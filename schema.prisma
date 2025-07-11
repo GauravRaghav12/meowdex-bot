@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  discordId String   @unique
+  username  String
+  coins     Int      @default(100)
+  lastDaily DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  cards     UserCard[]
+  drops     CardDrop[]
+
+  @@map("users")
+}
+
+model Card {
+  id          String @id @default(cuid())
+  name        String
+  description String
+  element     String
+  rarity      String
+  power       Int
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+
+  // Relations
+  userCards   UserCard[]
+  drops       CardDrop[]
+
+  @@map("cards")
+}
+
+model UserCard {
+  id     String @id @default(cuid())
+  userId String
+  cardId String
+  count  Int    @default(1)
+  createdAt DateTime @default(now())
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  card Card @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, cardId])
+  @@map("user_cards")
+}
+
+model CardDrop {
+  id        String   @id @default(cuid())
+  cardId    String
+  dropperId String
+  channelId String
+  messageId String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  // Relations
+  card    Card @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  dropper User @relation(fields: [dropperId], references: [id], onDelete: Cascade)
+
+  @@map("card_drops")
+}

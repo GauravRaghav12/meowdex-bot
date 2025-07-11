@@ -1,0 +1,26 @@
+{
+  "name": "meowdex",
+  "version": "1.0.0",
+  "description": "Meowdex - A Discord bot for AI-powered card generation and collection",
+  "main": "bot/index.js",
+  "scripts": {
+    "start": "node bot/index.js",
+    "bot": "node bot/index.js",
+    "dev": "nodemon bot/index.js",
+    "db:push": "npx prisma db push",
+    "db:studio": "npx prisma studio"
+  },
+  "keywords": ["discord", "bot", "ai", "cards", "meowdex"],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1",
+    "@prisma/client": "^5.7.1",
+    "axios": "^1.6.2"
+  },
+  "devDependencies": {
+    "prisma": "^5.7.1",
+    "nodemon": "^3.0.2"
+  }
+}
