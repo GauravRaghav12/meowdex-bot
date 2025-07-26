@@ -67,3 +67,15 @@ ehthumbs.db
 Thumbs.db
 
 # Prisma
+*.db-journal
+
+# Docker
+docker-compose.override.yml
+
+# Temporary files
+tmp/
+temp/
+
+# Bot specific
+logs/
+*.session
