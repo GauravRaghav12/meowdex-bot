@@ -91,11 +91,30 @@ Meowdex is a Discord bot that brings the excitement of card collection to your s
 - `npm run db:push` - Push database schema changes
 - `npm run db:studio` - Open Prisma Studio
 
+### Project Structure
+```
+/
+├── bot/                    # Main bot code
+│   ├── commands/          # Slash command handlers
+│   ├── utils/             # Utility functions
+│   ├── config/            # Configuration files
+│   └── index.js           # Bot entry point
+├── schema.prisma          # Database schema
+├── package.json           # Dependencies
+├── docker-compose.yml     # Docker setup
+└── README.md             # This file
+```
+
 ### Database Schema
 The bot uses Prisma with PostgreSQL and includes:
 - **Users**: Discord user data, coins, last daily claim
 - **Cards**: Card collection with stats and ownership
 - **Drops**: Active card drops in channels
+
+### Adding Features
+- **New Commands**: Add files to `bot/commands/` - they're loaded automatically
+- **Utilities**: Create reusable functions in `bot/utils/`
+- **Configuration**: Modify `bot/config/config.js` for settings
 
 ## 📝 License
 
